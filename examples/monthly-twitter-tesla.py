@@ -29,4 +29,6 @@ def rebalance(context, data):
                 order_target_percent(context.twitter, 0.5)
             else:
                 order_target_percent(context.twitter, -0.5)
-            order_target_percent(context.tesla, 0.5)
+            
+    if data.can_trade(context.tesla):
+        order_target_percent(context.tesla, 0.5)
