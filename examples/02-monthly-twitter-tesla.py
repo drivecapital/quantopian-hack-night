@@ -25,6 +25,7 @@ def rebalance(context, data):
 
     # Place orders for each of our securities.
     if data.can_trade(context.twitter):
+            # get_datetime() returns the current algorithm time
             if get_datetime().month in [5, 6, 7]:
                 order_target_percent(context.twitter, 0.5)
             else:

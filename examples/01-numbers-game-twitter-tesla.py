@@ -25,6 +25,11 @@ def rebalance(context, data):
 
     # Place orders for each of our securities.
     if data.can_trade(context.twitter):
+        """
+        A full explanation of data.current can be found at https://www.quantopian.com/help#api-data-current
+        This returns the current value of the given asset (for example, twitter stock) at the current algorithm time.
+        Valid fields are "price", "last_traded", "open", "high", "low", "close", and "volume"
+        """
         log.info(data.current(context.twitter, 'price'))
         current_twitter_price = data.current(context.twitter, 'price')
         cents_part = float("{0:.2f}".format(current_twitter_price % 1))
