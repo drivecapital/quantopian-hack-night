@@ -24,6 +24,16 @@ I've provided a few simple examples of algorithms I've built/tested using some w
 
 See how high (or low!) of a return you can get.
 
+#### Slightly more advanced - Pipeline concept (copied from https://www.quantopian.com/help#pipeline-title)
+Many trading algorithms are variations on the following structure:
+1. For each asset in a known (large) universe, compute N scalar values for the asset based on a trailing window of data.
+1. Select a smaller “tradeable universe” of assets based on the values computed in (1).
+1. Calculate desired portfolio weights on the trading universe computed in (2).
+1. Place orders to move the algorithm’s current portfolio allocations to the desired weights computed in (3).
+
+The Pipeline API module provides a framework for expressing this style of algorithm.
+
+
 #### Support Links
 ###### Quantopian-specific
 * Getting started tutorial - https://www.quantopian.com/tutorials/getting-started
