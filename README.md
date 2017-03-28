@@ -15,11 +15,20 @@ The following is an example of an algorithm that allocates 100% of its portfolio
     def handle_data(context, data):
         # Position 100% of our portfolio to be long in AAPL
         order_target_percent(context.aapl, 1.00)
+        
+#### Start writing code
+Home page of algorithms (check out the Hellow World Algorithm first) - https://www.quantopian.com/algorithms/
+
+#### Check out the examples folder here
+I've provided a few simple examples of algorithms I've built/tested using some well known stocks.
+
+See how high (or low!) of a return you can get.
 
 #### Support Links
 ###### Quantopian-specific
-* Home page of algorithms (check out the Hellow World Algorithm first) - https://www.quantopian.com/algorithms/
 * Getting started tutorial - https://www.quantopian.com/tutorials/getting-started
+* API overview - https://www.quantopian.com/help
+* Advanced tips (almost certainly beyond the scope of this project) - https://www.quantopian.com/posts/tips-for-writing-robust-algorithms-for-the-hedge-fund
 
 ###### General
 * What is algoirthmic trading? - https://en.wikipedia.org/wiki/Algorithmic_trading
