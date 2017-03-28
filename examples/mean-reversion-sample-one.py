@@ -2,6 +2,8 @@
 Hypothesis behind this algorithm:
 If the 10-day simple moving average (short SMA) of a security is higher than its 30-day simple moving average (long SMA), the price of the security will drop.
 Conversely, if its short SMA is lower than its long SMA, the price will go up. This is referred to as mean reversion.
+
+The full explanation behind each step of this algorithm can be found at https://www.quantopian.com/tutorials/getting-started#lesson11
 """
 
 def initialize(context):
