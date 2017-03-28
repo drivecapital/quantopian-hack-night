@@ -33,3 +33,5 @@ See how high (or low!) of a return you can get.
 ###### General
 * What is algoirthmic trading? - https://en.wikipedia.org/wiki/Algorithmic_trading
 * Deep dive on high frequency trading (Quantopian is much more low frequency trading, but this is still interesting) - http://www.investopedia.com/news/highfrequency-trading-primer/
+* Basic Python Docs - https://docs.python.org/2.7/
+* Free 6 week course on Python -https://www.udacity.com/course/programming-foundations-with-python--ud036
