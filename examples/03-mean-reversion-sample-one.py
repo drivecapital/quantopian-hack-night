@@ -13,8 +13,13 @@ def initialize(context):
     """
 
     # An assortment of securities from different sectors:
-    # MSFT, UNH, CTAS, JNS, COG
-    context.security_list = [sid(5061), sid(7792), sid(1941), sid(24556), sid(1746)]
+    context.security_list = [
+        sid(5061),  # MSFT
+        sid(7792),  # UNH
+        sid(1941),  # CTAS
+        sid(24556), # JNS
+        sid(1746)   # COG
+    ]
 
     # Rebalance every Monday (or the first trading day if it's a holiday)
     # at market open.
