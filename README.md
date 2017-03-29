@@ -39,6 +39,11 @@ Many trading algorithms are variations on the following structure:
 
 The Pipeline API module provides a framework for expressing this style of algorithm.
 
+#### Prizes for the ambitious
+1. Highest-returning algorithm (must use at least some sort of methodology beyond "Buy a bunch of Apple")
+1. Same as above, except *lowest* returning algorithm
+1. "Judges favorite" (up to the discretion of Zach & Brandon)
+
 #### Support Links
 
 ###### Quantopian-specific
@@ -49,7 +54,7 @@ The Pipeline API module provides a framework for expressing this style of algori
 
 ###### General
 
-* What is algoirthmic trading? - https://en.wikipedia.org/wiki/Algorithmic_trading
+* What is algorithmic trading? - https://en.wikipedia.org/wiki/Algorithmic_trading
 * Deep dive on high frequency trading (Quantopian is much more low frequency trading, but this is still interesting) - http://www.investopedia.com/news/highfrequency-trading-primer/
 * Basic Python Docs - https://docs.python.org/2.7/
 * Free 6 week course on Python -https://www.udacity.com/course/programming-foundations-with-python--ud036
