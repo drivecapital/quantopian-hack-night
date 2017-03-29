@@ -13,8 +13,13 @@ def initialize(context):
     """
 
     # An assortment of securities from different sectors:
-    # MSFT, UNH, CTAS, JNS, COG
-    context.security_list = [sid(5061), sid(7792), sid(1941), sid(24556), sid(1746)]
+    context.security_list = [
+        sid(5061),  # MSFT
+        sid(7792),  # UNH
+        sid(1941),  # CTAS
+        sid(24556), # JNS
+        sid(1746)   # COG
+    ]
 
     # Rebalance every Monday (or the first trading day if it's a holiday)
     # at market open.
@@ -53,8 +58,14 @@ def compute_weights(context, data):
     short_secs = normalized_weights.index[normalized_weights < 0]
     long_secs = normalized_weights.index[normalized_weights > 0]
 
-    log.info("This week's longs: " + ", ".join([long_.symbol for long_ in long_secs]))
-    log.info("This week's shorts: " + ", ".join([short_.symbol for short_ in short_secs]))
+    log.info("This week's longs: " + ", ".join([
+        security.symbol + " {:.2%}".format(normalized_weights[security])
+        for security in long_secs
+    ]))
+    log.info("This week's shorts: " + ", ".join([
+        security.symbol + " {:.2%}".format(normalized_weights[security])
+        for security in short_secs
+    ]))
 
     # Return our normalized weights. These will be used when placing orders later.
     return normalized_weights

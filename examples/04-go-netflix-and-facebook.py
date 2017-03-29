@@ -13,19 +13,19 @@ def initialize(context):
     """
 
     # Microsoft + FANG:
-    # MSFT, Apple, Netflix, Facebook, Google
-    context.security_list = [sid(5061), sid(24), sid(23709), sid(42950), sid(46631)]
+    context.security_list = [
+        sid(5061), # MSFT
+        sid(24), # AAPL
+        sid(23709), # NFLX
+        sid(42950), # FB
+        sid(46631) # GOOG
+    ]
 
     # Rebalance every Monday (or the first trading day if it's a holiday)
     # at market open.
     schedule_function(rebalance,
                       date_rules.week_start(days_offset=0),
                       time_rules.market_open())
-
-    # Record variables at the end of each day.
-    schedule_function(record_vars,
-                      date_rules.every_day(),
-                      time_rules.market_close())
 
 def compute_weights(context, data):
     """
@@ -52,6 +52,9 @@ def compute_weights(context, data):
     # Determine and log our long and short positions.
     short_secs = normalized_weights.index[normalized_weights < 0]
     long_secs = normalized_weights.index[normalized_weights > 0]
+    # Note that the short and long securities lists above don't account for our
+    # always-long securities. We'll special-case those later. If you figure out
+    # how to include them here, a pull request would be much appreciated!
     
     always_go_long = ['NFLX', 'FB']
 
@@ -80,20 +83,3 @@ def rebalance(context, data):
             else:
                 # Want to dampen the other stocks' amounts a bit
                 order_target_percent(security, weights[security] * 0.75)
-
-def record_vars(context, data):
-    """
-    This function is called at the end of each day and plots our leverage as well
-    as the number of long and short positions we are holding.
-    """
-
-    # Check how many long and short positions we have.
-    longs = shorts = 0
-    for position in context.portfolio.positions.itervalues():
-        if position.amount > 0:
-            longs += 1
-        elif position.amount < 0:
-            shorts += 1
-
-    # Record our variables.
-    record(leverage=context.account.leverage, long_count=longs, short_count=shorts)
