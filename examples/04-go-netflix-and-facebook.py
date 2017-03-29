@@ -52,6 +52,9 @@ def compute_weights(context, data):
     # Determine and log our long and short positions.
     short_secs = normalized_weights.index[normalized_weights < 0]
     long_secs = normalized_weights.index[normalized_weights > 0]
+    # Note that the short and long securities lists above don't account for our
+    # always-long securities. We'll special-case those later. If you figure out
+    # how to include them here, a pull request would be much appreciated!
     
     always_go_long = ['NFLX', 'FB']
 
