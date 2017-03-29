@@ -58,8 +58,14 @@ def compute_weights(context, data):
     short_secs = normalized_weights.index[normalized_weights < 0]
     long_secs = normalized_weights.index[normalized_weights > 0]
 
-    log.info("This week's longs: " + ", ".join([long_.symbol for long_ in long_secs]))
-    log.info("This week's shorts: " + ", ".join([short_.symbol for short_ in short_secs]))
+    log.info("This week's longs: " + ", ".join([
+        security.symbol + " {:.2%}".format(normalized_weights[security])
+        for security in long_secs
+    ]))
+    log.info("This week's shorts: " + ", ".join([
+        security.symbol + " {:.2%}".format(normalized_weights[security])
+        for security in short_secs
+    ]))
 
     # Return our normalized weights. These will be used when placing orders later.
     return normalized_weights
