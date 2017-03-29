@@ -27,11 +27,6 @@ def initialize(context):
                       date_rules.week_start(days_offset=0),
                       time_rules.market_open())
 
-    # Record variables at the end of each day.
-    schedule_function(record_vars,
-                      date_rules.every_day(),
-                      time_rules.market_close())
-
 def compute_weights(context, data):
     """
     Compute weights for each security that we want to order.
@@ -85,20 +80,3 @@ def rebalance(context, data):
             else:
                 # Want to dampen the other stocks' amounts a bit
                 order_target_percent(security, weights[security] * 0.75)
-
-def record_vars(context, data):
-    """
-    This function is called at the end of each day and plots our leverage as well
-    as the number of long and short positions we are holding.
-    """
-
-    # Check how many long and short positions we have.
-    longs = shorts = 0
-    for position in context.portfolio.positions.itervalues():
-        if position.amount > 0:
-            longs += 1
-        elif position.amount < 0:
-            shorts += 1
-
-    # Record our variables.
-    record(leverage=context.account.leverage, long_count=longs, short_count=shorts)
