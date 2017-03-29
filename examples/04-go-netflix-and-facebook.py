@@ -13,8 +13,13 @@ def initialize(context):
     """
 
     # Microsoft + FANG:
-    # MSFT, Apple, Netflix, Facebook, Google
-    context.security_list = [sid(5061), sid(24), sid(23709), sid(42950), sid(46631)]
+    context.security_list = [
+        sid(5061), # MSFT
+        sid(24), # AAPL
+        sid(23709), # NFLX
+        sid(42950), # FB
+        sid(46631) # GOOG
+    ]
 
     # Rebalance every Monday (or the first trading day if it's a holiday)
     # at market open.
