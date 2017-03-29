@@ -38,11 +38,6 @@ def initialize(context):
                       date_rules.week_start(days_offset=0),
                       time_rules.market_open(hours=1, minutes=30))
 
-    # Record tracking variables at the end of each day.
-    schedule_function(record_vars,
-                      date_rules.every_day(),
-                      time_rules.market_close(minutes=1))
-
     # Create and attach our pipeline (dynamic stock selector), defined below.
     attach_pipeline(make_pipeline(context), 'mean_reversion_example')
 
@@ -146,21 +141,3 @@ def rebalance(context,data):
     # Log the long and short orders each week.
     log.info("This week's longs: "+", ".join([long_.symbol for long_ in context.long_secs.index]))
     log.info("This week's shorts: "  +", ".join([short_.symbol for short_ in context.short_secs.index]))
-
-def record_vars(context, data):
-    """
-    This function is called at the end of each day and plots certain variables.
-    """
-
-    # Check how many long and short positions we have.
-    longs = shorts = 0
-    for position in context.portfolio.positions.itervalues():
-        if position.amount > 0:
-            longs += 1
-        if position.amount < 0:
-            shorts += 1
-
-    # Record and plot the leverage of our portfolio over time as well as the
-    # number of long and short positions. Even in minute mode, only the end-of-day
-    # leverage is plotted.
-    record(leverage = context.account.leverage, long_count=longs, short_count=shorts)
